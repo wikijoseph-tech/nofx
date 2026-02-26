@@ -205,7 +205,7 @@ export function LoginPage() {
               </div>
               <div className="flex gap-2">
                 <span className="text-emerald-500">➜</span>
-                <span>Target: NOFX CORE HUB</span>
+                <span>Target: DCKJ CORE HUB</span>
               </div>
               <div className="flex gap-2">
                 <span className="text-emerald-500">➜</span>

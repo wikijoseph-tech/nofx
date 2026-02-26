@@ -169,7 +169,7 @@ export default function TerminalHero() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-nofx-gold opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-nofx-gold"></span>
                         </span>
-                        <span className="text-xs font-mono text-nofx-gold tracking-widest">NOFX OPEN-SOURCE AGENTIC OS</span>
+                        <span className="text-xs font-mono text-nofx-gold tracking-widest">DCKJ OPEN-SOURCE AGENTIC OS</span>
                     </motion.div>
 
                     {/* Main Title - Massive & Impactful */}
