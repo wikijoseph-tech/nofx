@@ -12,12 +12,6 @@ export default function FooterSection({ language }: FooterSectionProps) {
       { name: 'Telegram', href: OFFICIAL_LINKS.telegram, icon: Send },
     ],
     resources: [
-      {
-        name: language === 'zh' ? '文档' : 'Documentation',
-        href: 'https://github.com/NoFxAiOS/nofx/blob/main/README.md',
-      },
-      { name: 'Issues', href: 'https://github.com/NoFxAiOS/nofx/issues' },
-      { name: 'Pull Requests', href: 'https://github.com/NoFxAiOS/nofx/pulls' },
     ],
     supporters: [
       { name: 'Binance', href: 'https://www.binance.com/join?ref=NOFXENG' },
