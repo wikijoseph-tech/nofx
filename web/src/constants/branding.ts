@@ -40,7 +40,7 @@ function getVerifiedLink(key: keyof typeof ENCODED_LINKS): string {
     // Fallback to hardcoded values if decoding fails
     const fallbacks: Record<string, string> = {
       twitter: 'https://x.com/nofx_official',
-      telegram: 'https://t.me/nofx_dev_community',
+      telegram: 'https://t.me/dckj777',
       github: 'https://github.com/NoFxAiOS/nofx',
     }
     return fallbacks[key] || ''
