@@ -1,11 +1,15 @@
-# Railway All-in-One: 复用现有 GHCR 镜像
-# 从现有镜像提取内容，合并到一个容器
+# Railway All-in-One: 后端复用 GHCR 镜像，前端从本地源码构建
 
 # 从后端镜像提取二进制
 FROM ghcr.io/nofxaios/nofx/nofx-backend:latest AS backend
 
-# 从前端镜像提取静态文件
-FROM ghcr.io/nofxaios/nofx/nofx-frontend:latest AS frontend
+# 从本地源码构建前端（确保 web/index.html 等修改生效）
+FROM node:20-alpine AS frontend-builder
+WORKDIR /build
+COPY web/package*.json ./
+RUN npm ci
+COPY web/ ./
+RUN npm run build
 
 # 最终镜像
 FROM alpine:latest
@@ -19,8 +23,8 @@ COPY --from=backend /app/nofx /app/nofx
 COPY --from=backend /usr/local/lib/libta_lib* /usr/local/lib/
 RUN ldconfig /usr/local/lib 2>/dev/null || true
 
-# 复制前端静态文件
-COPY --from=frontend /usr/share/nginx/html /usr/share/nginx/html
+# 复制前端构建产物（来自本地构建）
+COPY --from=frontend-builder /build/dist /usr/share/nginx/html
 
 WORKDIR /app
 RUN mkdir -p /app/data
