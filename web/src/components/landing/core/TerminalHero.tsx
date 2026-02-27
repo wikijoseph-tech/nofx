@@ -243,7 +243,7 @@ export default function TerminalHero() {
           </div>
 
           {/* Community Stats Row */}
-          <CommunityStats />
+          {/* <CommunityStats /> */}
         </div>
       </div>
 
