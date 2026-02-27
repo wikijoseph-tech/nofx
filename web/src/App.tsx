@@ -48,8 +48,6 @@ type Page =
   | 'login'
   | 'register'
 
-
-
 function App() {
   const { language, setLanguage } = useLanguage()
   const { user, token, logout, isLoading } = useAuth()
@@ -58,8 +56,8 @@ function App() {
 
   // Debug log
   useEffect(() => {
-    console.log('[App] Mounted. Route:', window.location.pathname);
-  }, []);
+    console.log('[App] Mounted. Route:', window.location.pathname)
+  }, [])
 
   // 从URL路径读取初始页面状态（支持刷新保持页面）
   const getInitialPage = (): Page => {
@@ -69,8 +67,8 @@ function App() {
     if (path === '/traders' || hash === 'traders') return 'traders'
     if (path === '/backtest' || hash === 'backtest') return 'backtest'
     if (path === '/strategy' || hash === 'strategy') return 'strategy'
-    if (path === '/strategy-market' || hash === 'strategy-market') return 'strategy-market'
-    if (path === '/data' || hash === 'data') return 'data'
+    if (path === '/strategy-market' || hash === 'strategy-market')
+      return 'strategy-market'
     if (path === '/debate' || hash === 'debate') return 'debate'
     if (path === '/dashboard' || hash === 'trader' || hash === 'details')
       return 'trader'
@@ -89,17 +87,17 @@ function App() {
   // Unified page navigation handler
   const navigateToPage = (page: Page) => {
     const pathMap: Record<Page, string> = {
-      'competition': '/competition',
+      competition: '/competition',
       'strategy-market': '/strategy-market',
-      'data': '/data',
-      'traders': '/traders',
-      'trader': '/dashboard',
-      'backtest': '/backtest',
-      'strategy': '/strategy',
-      'debate': '/debate',
-      'faq': '/faq',
-      'login': '/login',
-      'register': '/register',
+      data: '/data',
+      traders: '/traders',
+      trader: '/dashboard',
+      backtest: '/backtest',
+      strategy: '/strategy',
+      debate: '/debate',
+      faq: '/faq',
+      login: '/login',
+      register: '/register',
     }
     const path = pathMap[page]
     if (path) {
@@ -111,7 +109,9 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState<Page>(getInitialPage())
   // 从 URL 参数读取初始 trader 标识（格式: name-id前4位）
-  const [selectedTraderSlug, setSelectedTraderSlug] = useState<string | undefined>(() => {
+  const [selectedTraderSlug, setSelectedTraderSlug] = useState<
+    string | undefined
+  >(() => {
     const params = new URLSearchParams(window.location.search)
     return params.get('trader') || undefined
   })
@@ -129,12 +129,12 @@ function App() {
     const lastDashIndex = slug.lastIndexOf('-')
     if (lastDashIndex === -1) {
       // 没有 dash，直接按 name 匹配
-      return traderList.find(t => t.trader_name === slug)
+      return traderList.find((t) => t.trader_name === slug)
     }
     const name = slug.slice(0, lastDashIndex)
     const idPrefix = slug.slice(lastDashIndex + 1)
-    return traderList.find(t =>
-      t.trader_name === name && t.trader_id.startsWith(idPrefix)
+    return traderList.find(
+      (t) => t.trader_name === name && t.trader_id.startsWith(idPrefix)
     )
   }
   const [lastUpdate, setLastUpdate] = useState<string>('--:--:--')
@@ -380,15 +380,15 @@ function App() {
   if (route === '/data') {
     const dataPageNavigate = (page: Page) => {
       const pathMap: Record<string, string> = {
-        'data': '/data',
-        'competition': '/competition',
+        data: '/data',
+        competition: '/competition',
         'strategy-market': '/strategy-market',
-        'traders': '/traders',
-        'trader': '/dashboard',
-        'backtest': '/backtest',
-        'strategy': '/strategy',
-        'debate': '/debate',
-        'faq': '/faq',
+        traders: '/traders',
+        trader: '/dashboard',
+        backtest: '/backtest',
+        strategy: '/strategy',
+        debate: '/debate',
+        faq: '/faq',
       }
       const path = pathMap[page]
       if (path) {
@@ -459,8 +459,6 @@ function App() {
           >
             {currentPage === 'competition' ? (
               <CompetitionPage />
-            ) : currentPage === 'data' ? (
-              <DataPage />
             ) : currentPage === 'strategy-market' ? (
               <StrategyMarketPage />
             ) : currentPage === 'traders' ? (
@@ -496,7 +494,7 @@ function App() {
                 onTraderSelect={(traderId) => {
                   setSelectedTraderId(traderId)
                   // 更新 URL 参数（使用 slug: name-id前4位）
-                  const trader = traders?.find(t => t.trader_id === traderId)
+                  const trader = traders?.find((t) => t.trader_id === traderId)
                   if (trader) {
                     const url = new URL(window.location.href)
                     url.searchParams.set('trader', getTraderSlug(trader))
@@ -524,7 +522,6 @@ function App() {
     </div>
   )
 }
-
 
 // Wrap App with providers
 export default function AppWithProviders() {
