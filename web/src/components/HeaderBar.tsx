@@ -144,12 +144,6 @@ export default function HeaderBar({
                   label: 'Backtest',
                   requiresAuth: true,
                 },
-                {
-                  page: 'faq',
-                  path: '/faq',
-                  label: t('faqNav', language),
-                  requiresAuth: false,
-                },
               ]
 
               const handleNavClick = (tab: (typeof navTabs)[0]) => {
